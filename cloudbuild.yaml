@@ -2,28 +2,6 @@ steps:
 - name: 'gcr.io/cloud-builders/mvn'
   args: ['install']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/cloud-report-sample:$REVISION_ID', '.']
-- name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/cloud-report-sample:latest', '.']
-#
-# K8S-Deployment
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'k8s/']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=cloud-report-cluster'
-#
-# K8S-Update
-- name: 'gcr.io/cloud-builders/kubectl'
-  args:
-  - 'set'
-  - 'image'
-  - 'deployment'
-  - 'linkedin-learning'
-  - 'linkedin-learning=gcr.io/$PROJECT_ID/cloud-report-sample:$REVISION_ID'
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=cloud-report-cluster'
 images: [
-	'gcr.io/$PROJECT_ID/cloud-report-sample:$REVISION_ID',
-	'gcr.io/$PROJECT_ID/cloud-report-sample:latest']
+  'gcr.io/$PROJECT_ID/cloud-report-sample:latest']
