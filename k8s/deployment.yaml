@@ -15,7 +15,7 @@ spec:
         run: linkedin-learning
     spec:
       containers:
-      - image: gcr.io/k8s-linkedin/linkedin-learning:latest
+      - image: ksamaschke/sample-image:latest
         name: linkedin-learning
         ports:
         - containerPort: 80
